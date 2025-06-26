@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="favicon-16x16.png" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="Beautify and format your messy CSS code instantly with our free CSS Formatter tool. Make your code more readable and well-structured.">
+<meta name="keywords" content="css formatter, beautify css, format css, css beautifier, code beautifier">
+<meta name="author" content="FixitHub">
+<meta property="og:title" content="FixitHub - Free CSS Formatter Tool">
+<meta property="og:description" content="Beautify and format your messy CSS code instantly with our free CSS Formatter tool. Make your code more readable and well-structured.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://fixithub.site/css-formatter">
+<meta property="og:image" content="https://fixithub.site/images/css-formatter.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://fixithub.site/css-formatter">
+<title>CSS Formatter - FixitHub</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2131173131707389" crossorigin="anonymous"></script>
+
+    
+    <!-- Schema.org markup for Google -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "CSS Formatter Tool",
+      "url": "https://fixithub.com/css-formatter",
+      "description": "Free online tool to format, beautify and minify CSS code",
+      "applicationCategory": "DeveloperTool",
+      "operatingSystem": "Web"
+    }
+    </script>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="https://fixithub.com/favicon.ico" type="image/x-icon">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google AdSense (replace with your own publisher ID) -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_ID" crossorigin="anonymous"></script>
+    
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --accent-color: #4895ef;
+            --text-color: #2b2d42;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --border-color: #e9ecef;
+            --success-color: #4bb543;
+            --error-color: #ff3333;
+            --warning-color: #ffcc00;
+            --font-main: 'Inter', sans-serif;
+            --font-code: 'Fira Code', monospace;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        .dark-mode {
+            --primary-color: #4895ef;
+            --secondary-color: #4361ee;
+            --accent-color: #3f37c9;
+            --text-color: #f8f9fa;
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --border-color: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-main);
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            line-height: 1.6;
+            transition: var(--transition);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        header {
+            background-color: var(--card-bg);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: var(--transition);
+        }
+        
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        
+        .logo i {
+            font-size: 1.8rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.5rem;
+            border-radius: 4px;
+        }
+        
+        nav a:hover {
+            color: var(--primary-color);
+            background-color: rgba(67, 97, 238, 0.1);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .ad-banner {
+            background-color: #f0f0f0;
+            padding: 1rem;
+            text-align: center;
+            margin: 1rem auto;
+            max-width: 1400px;
+            width: 100%;
+            border-radius: 4px;
+            border: 1px dashed #ccc;
+        }
+        
+        .dark-mode .ad-banner {
+            background-color: #2a2a2a;
+            border-color: #444;
+        }
+        
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .tool-title {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .tool-title h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .tool-title p {
+            color: var(--text-color);
+            opacity: 0.8;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .tool-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .tool-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .editor-container, .output-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .editor-header, .output-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .editor-header h2, .output-header h2 {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+        
+        .editor-actions, .output-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            font-family: var(--font-main);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--border-color);
+            transform: translateY(-2px);
+        }
+        
+        .btn-success {
+            background-color: var(--success-color);
+            color: white;
+        }
+        
+        .btn-success:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        
+        .btn-warning {
+            background-color: var(--warning-color);
+            color: var(--text-color);
+        }
+        
+        .btn-warning:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        
+        .btn-danger {
+            background-color: var(--error-color);
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        
+        .btn-sm {
+            padding: 0.3rem 0.6rem;
+            font-size: 0.8rem;
+        }
+        
+        .editor-options {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+        
+        .form-group label {
+            font-size: 0.8rem;
+            color: var(--text-color);
+            opacity: 0.8;
+        }
+        
+        select, input[type="number"] {
+            padding: 0.3rem 0.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            font-family: var(--font-main);
+        }
+        
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .slider {
+            background-color: var(--primary-color);
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        
+        .code-container {
+            position: relative;
+            flex: 1;
+            min-height: 400px;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            font-family: var(--font-code);
+            resize: none;
+            transition: var(--transition);
+            line-height: 1.5;
+            tab-size: 4;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
+        }
+        
+        .output {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            font-family: var(--font-code);
+            overflow-y: auto;
+            white-space: pre;
+            line-height: 1.5;
+            tab-size: 4;
+        }
+        
+        .file-upload {
+            display: none;
+        }
+        
+        .file-upload-label {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            border: 1px dashed var(--border-color);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+        
+        .file-upload-label:hover {
+            border-color: var(--primary-color);
+            background-color: rgba(67, 97, 238, 0.1);
+        }
+        
+        .drag-drop-area {
+            border: 2px dashed var(--border-color);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            transition: var(--transition);
+            display: none;
+        }
+        
+        .drag-drop-area.active {
+            display: block;
+        }
+        
+        .drag-drop-area.highlight {
+            border-color: var(--primary-color);
+            background-color: rgba(67, 97, 238, 0.05);
+        }
+        
+        .drag-drop-area i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .drag-drop-area p {
+            margin-bottom: 0.5rem;
+        }
+        
+        .status-message {
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+        
+        .status-message.success {
+            background-color: rgba(75, 181, 67, 0.2);
+            color: var(--success-color);
+            display: block;
+        }
+        
+        .status-message.error {
+            background-color: rgba(255, 51, 51, 0.2);
+            color: var(--error-color);
+            display: block;
+        }
+        
+        .ad-sidebar {
+            background-color: #f0f0f0;
+            padding: 1rem;
+            text-align: center;
+            border-radius: 4px;
+            border: 1px dashed #ccc;
+            margin-bottom: 2rem;
+        }
+        
+        .dark-mode .ad-sidebar {
+            background-color: #2a2a2a;
+            border-color: #444;
+        }
+        
+        footer {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            margin-top: 2rem;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+        
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-logo i {
+            font-size: 1.5rem;
+        }
+        
+        .footer-about p {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            color: var(--text-color);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .footer-links h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.8rem;
+            color: var(--text-color);
+            opacity: 0.7;
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: center;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-menu {
+                display: none;
+                width: 100%;
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .tool-title h1 {
+                font-size: 2rem;
+            }
+            
+            .editor-options {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Syntax highlighting classes */
+        .token.comment,
+        .token.prolog,
+        .token.doctype,
+        .token.cdata {
+            color: #6a9955;
+        }
+        
+        .token.punctuation {
+            color: #d4d4d4;
+        }
+        
+        .token.property,
+        .token.tag,
+        .token.boolean,
+        .token.number,
+        .token.constant,
+        .token.symbol,
+        .token.deleted {
+            color: #b5cea8;
+        }
+        
+        .token.selector,
+        .token.attr-name,
+        .token.string,
+        .token.char,
+        .token.builtin,
+        .token.inserted {
+            color: #ce9178;
+        }
+        
+        .token.operator,
+        .token.entity,
+        .token.url,
+        .language-css .token.string,
+        .style .token.string {
+            color: #d4d4d4;
+        }
+        
+        .token.atrule,
+        .token.attr-value,
+        .token.keyword {
+            color: #569cd6;
+        }
+        
+        .token.function,
+        .token.class-name {
+            color: #dcdcaa;
+        }
+        
+        .token.regex,
+        .token.important,
+        .token.variable {
+            color: #d16969;
+        }
+        
+        .dark-mode .token.comment,
+        .dark-mode .token.prolog,
+        .dark-mode .token.doctype,
+        .dark-mode .token.cdata {
+            color: #6a9955;
+        }
+        
+        .dark-mode .token.punctuation {
+            color: #d4d4d4;
+        }
+        
+        .dark-mode .token.property,
+        .dark-mode .token.tag,
+        .dark-mode .token.boolean,
+        .dark-mode .token.number,
+        .dark-mode .token.constant,
+        .dark-mode .token.symbol,
+        .dark-mode .token.deleted {
+            color: #b5cea8;
+        }
+        
+        .dark-mode .token.selector,
+        .dark-mode .token.attr-name,
+        .dark-mode .token.string,
+        .dark-mode .token.char,
+        .dark-mode .token.builtin,
+        .dark-mode .token.inserted {
+            color: #ce9178;
+        }
+        
+        .dark-mode .token.operator,
+        .dark-mode .token.entity,
+        .dark-mode .token.url,
+        .dark-mode .language-css .token.string,
+        .dark-mode .style .token.string {
+            color: #d4d4d4;
+        }
+        
+        .dark-mode .token.atrule,
+        .dark-mode .token.attr-value,
+        .dark-mode .token.keyword {
+            color: #569cd6;
+        }
+        
+        .dark-mode .token.function,
+        .dark-mode .token.class-name {
+            color: #dcdcaa;
+        }
+        
+        .dark-mode .token.regex,
+        .dark-mode .token.important,
+        .dark-mode .token.variable {
+            color: #d16969;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">
+                <i class="fas fa-code"></i>
+                <span>Css Formatter</span>
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about-ua.html">About Us</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="contact-us.html">Contact Us</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </nav>
+            
+            <div class="toggle-container">
+                <span>Dark Mode</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="darkModeToggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+    </header>
+    
+
+        
+        <div class="status-message" id="statusMessage"></div>
+        
+        <div class="drag-drop-area" id="dragDropArea">
+            <i class="fas fa-file-upload"></i>
+            <p>Drag & Drop your CSS file here</p>
+            <p class="small">or</p>
+            <label for="fileUpload" class="file-upload-label">Select File</label>
+            <input type="file" id="fileUpload" class="file-upload" accept=".css,text/css">
+        </div>
+        
+        <div class="tool-container">
+            <div class="editor-container">
+                <div class="editor-header">
+                    <h2>Input CSS</h2>
+                    <div class="editor-actions">
+                        <button class="btn btn-secondary btn-sm" id="clearBtn">
+                            <i class="fas fa-trash-alt"></i> Clear
+                        </button>
+                        <button class="btn btn-secondary btn-sm" id="sampleBtn">
+                            <i class="fas fa-lightbulb"></i> Sample
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="editor-options">
+                    <div class="form-group">
+                        <label for="indentSize">Indentation</label>
+                        <select id="indentSize">
+                            <option value="2">2 spaces</option>
+                            <option value="4" selected>4 spaces</option>
+                            <option value="t">Tab</option>
+                        </select>
+                    </div>
+                    
+                    <div class="toggle-container">
+                        <span>Minify</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="minifyToggle">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="code-container">
+                    <textarea id="inputCode" placeholder="Paste your CSS code here or upload a file...">body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header {
+  background-color: #4361ee;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #4361ee;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #3f37c9;
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+  
+  .header {
+    font-size: 1.5rem;
+  }
+}</textarea>
+                </div>
+                
+                <div class="editor-actions">
+                    <button class="btn btn-primary" id="formatBtn">
+                        <i class="fas fa-magic"></i> Format CSS
+                    </button>
+                    <button class="btn btn-secondary" id="uploadBtn">
+                        <i class="fas fa-upload"></i> Upload File
+                    </button>
+                </div>
+            </div>
+            
+            <div class="output-container">
+                <div class="output-header">
+                    <h2>Formatted CSS</h2>
+                    <div class="output-actions">
+                        <button class="btn btn-success btn-sm" id="copyBtn">
+                            <i class="fas fa-copy"></i> Copy
+                        </button>
+                        <button class="btn btn-warning btn-sm" id="downloadBtn">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="code-container">
+                    <pre class="output" id="outputCode"></pre>
+                </div>
+                
+                <div class="output-info">
+                    <p id="charCount">Characters: 0</p>
+                    <p id="lineCount">Lines: 0</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- In-content Ad -->
+        <div class="ad-banner">
+            <!-- Google AdSense In-content Ad -->
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_ID" crossorigin="anonymous"></script>
+            <!-- In-content Ad -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-YOUR_ADSENSE_ID"
+                 data-ad-slot="5678901234"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+        
+        <div class="tool-description">
+            <h3>About CSS Formatter Tool</h3>
+            <p>Our CSS Formatter tool helps you beautify and minify your CSS code with ease. Whether you're working with messy, minified CSS or just want to optimize your stylesheets, this tool provides a quick and efficient solution.</p>
+            
+            <h4>Features:</h4>
+            <ul>
+                <li>Format and beautify CSS code with proper indentation</li>
+                <li>Minify CSS to reduce file size</li>
+                <li>Customizable indentation (spaces or tabs)</li>
+                <li>Drag and drop file support</li>
+                <li>Copy to clipboard with one click</li>
+                <li>Download formatted CSS as a file</li>
+                <li>Dark/Light mode for comfortable coding</li>
+            </ul>
+            
+            <h4>How to use:</h4>
+            <ol>
+                <li>Paste your CSS code in the input area or upload a CSS file</li>
+                <li>Select your preferred indentation style</li>
+                <li>Click "Format CSS" to beautify your code</li>
+                <li>Use the "Copy" or "Download" buttons to save your formatted CSS</li>
+                <li>Toggle the "Minify" switch to compress your CSS code</li>
+            </ol>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about">
+                <a href="#" class="footer-logo">
+                    <i class="fas fa-code"></i>
+                    <span>FixitHub</span>
+                </a>
+                <p>Your one-stop solution for all developer tools. We provide free, powerful online tools to make your development workflow easier and more efficient.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <h3>Tools</h3>
+                <ul>
+                    <li><a href="html-formatter.html">HTML Formatter</a></li>
+                    <li><a href="css-formatter.html">CSS Formatter</a></li>
+                    <li><a href="javascript-formatter.html">JavaScript Formatter</a></li>
+                    <li><a href="json-formatter.html">JSON Formatter</a></li>
+                    <li><a href="xml-formatter.html">XML Formatter</a></li>
+                </ul>
+            </div>
+            
+            
+            <div class="footer-links">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="contact-ua.html">Contact</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="term.html">Terms of Service</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2023 FixitHub. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // DOM Elements
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        const inputCode = document.getElementById('inputCode');
+        const outputCode = document.getElementById('outputCode');
+        const formatBtn = document.getElementById('formatBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const sampleBtn = document.getElementById('sampleBtn');
+        const copyBtn = document.getElementById('copyBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const uploadBtn = document.getElementById('uploadBtn');
+        const fileUpload = document.getElementById('fileUpload');
+        const dragDropArea = document.getElementById('dragDropArea');
+        const statusMessage = document.getElementById('statusMessage');
+        const minifyToggle = document.getElementById('minifyToggle');
+        const indentSize = document.getElementById('indentSize');
+        const charCount = document.getElementById('charCount');
+        const lineCount = document.getElementById('lineCount');
+        
+        // Sample CSS code
+        const sampleCSS = `/* Sample CSS - Feel free to replace with your own */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background-color: #f8f9fa;
+}
+
+.header {
+  font-size: 2rem;
+  color: #4361ee;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  background-color: #4361ee;
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #3f37c9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+  
+  .header {
+    font-size: 1.5rem;
+  }
+}`;
+        
+        // Check for saved dark mode preference or use system preference
+        if (localStorage.getItem('darkMode') === 'true' || 
+            (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.body.classList.add('dark-mode');
+            darkModeToggle.checked = true;
+        }
+        
+        // Toggle dark mode
+        darkModeToggle.addEventListener('change', () => {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', darkModeToggle.checked);
+        });
+        
+        // Toggle mobile menu
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+        
+        // Show/hide drag and drop area
+        uploadBtn.addEventListener('click', () => {
+            dragDropArea.classList.toggle('active');
+        });
+        
+        // Handle file upload via button
+        fileUpload.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                readFile(file);
+            }
+        });
+        
+        // Handle drag and drop
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dragDropArea.addEventListener(eventName, preventDefaults, false);
+        });
+        
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dragDropArea.addEventListener(eventName, highlight, false);
+        });
+        
+        ['dragleave', 'drop'].forEach(eventName => {
+            dragDropArea.addEventListener(eventName, unhighlight, false);
+        });
+        
+        function highlight() {
+            dragDropArea.classList.add('highlight');
+        }
+        
+        function unhighlight() {
+            dragDropArea.classList.remove('highlight');
+        }
+        
+        dragDropArea.addEventListener('drop', handleDrop, false);
+        
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const file = dt.files[0];
+            if (file && file.type === 'text/css') {
+                readFile(file);
+            } else {
+                showStatus('Please upload a valid CSS file', 'error');
+            }
+        }
+        
+        function readFile(file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                inputCode.value = e.target.result;
+                showStatus('File loaded successfully', 'success');
+                dragDropArea.classList.remove('active');
+                formatCSS();
+            };
+            reader.onerror = () => {
+                showStatus('Error reading file', 'error');
+            };
+            reader.readAsText(file);
+        }
+        
+        // Format CSS
+        function formatCSS() {
+            let css = inputCode.value.trim();
+            if (!css) {
+                showStatus('Please enter some CSS code', 'error');
+                return;
+            }
+            
+            try {
+                let formatted = css;
+                const isMinified = css.indexOf('{') === -1 || css.indexOf('}') === -1 || 
+                                  (css.indexOf('\n') === -1 && css.indexOf(' ') === -1);
+                
+                if (minifyToggle.checked || isMinified) {
+                    // Minify CSS
+                    formatted = css
+                        .replace(/\/\*[\s\S]*?\*\//g, '') // Remove comments
+                        .replace(/\s+/g, ' ') // Collapse whitespace
+                        .replace(/\s*([{}|:;,])\s*/g, '$1') // Remove space around brackets and colons
+                        .replace(/;}/g, '}') // Remove last semicolon in rule
+                        .trim();
+                } else {
+                    // Beautify CSS
+                    const indent = indentSize.value === 't' ? '\t' : ' '.repeat(parseInt(indentSize.value));
+                    let level = 0;
+                    formatted = css
+                        .replace(/\/\*[\s\S]*?\*\//g, '') // Remove comments first
+                        .replace(/\s+/g, ' ') // Collapse whitespace
+                        .replace(/\s*([{}|:;,])\s*/g, '$1') // Remove space around brackets and colons
+                        .replace(/;/g, ';\n') // Add new line after semicolon
+                        .replace(/}/g, '\n}\n') // Add new lines around closing brackets
+                        .replace(/{/g, '{\n') // Add new line after opening bracket
+                        .replace(/\n\s*\n/g, '\n') // Remove multiple empty lines
+                        .split('\n')
+                        .map(line => {
+                            line = line.trim();
+                            if (line.endsWith('}')) level--;
+                            const indentedLine = indent.repeat(level) + line;
+                            if (line.endsWith('{')) level++;
+                            return indentedLine;
+                        })
+                        .join('\n')
+                        .trim();
+                }
+                
+                outputCode.textContent = formatted;
+                updateCounts();
+                showStatus('CSS formatted successfully', 'success');
+                applySyntaxHighlighting();
+            } catch (error) {
+                showStatus('Error formatting CSS: ' + error.message, 'error');
+                console.error(error);
+            }
+        }
+        
+        // Apply syntax highlighting
+        function applySyntaxHighlighting() {
+            // Simple syntax highlighting implementation
+            const code = outputCode.textContent;
+            let highlighted = code
+                .replace(/\/\*[\s\S]*?\*\//g, '<span class="token comment">$&</span>') // Comments
+                .replace(/([{}();,:\.])/g, '<span class="token punctuation">$1</span>') // Punctuation
+                .replace(/(@\w+\b)/g, '<span class="token atrule">$1</span>') // At-rules
+                .replace(/([\w-]+)(?=\s*:)/g, '<span class="token property">$1</span>') // Properties
+                .replace(/(:)([\w-]+)/g, '$1<span class="token value">$2</span>') // Values
+                .replace(/(#[0-9a-fA-F]{3,6}|rgb[a]?\([^)]+\)|\b\d+[a-z]*\b)/g, '<span class="token value">$1</span>') // Colors/numbers
+                .replace(/([\w-]+)(?=\s*{)/g, '<span class="token selector">$1</span>') // Selectors
+                .replace(/&lt;/g, '<')
+                .replace(/&gt;/g, '>');
+            
+            outputCode.innerHTML = highlighted;
+        }
+        
+        // Update character and line counts
+        function updateCounts() {
+            const text = outputCode.textContent;
+            charCount.textContent = `Characters: ${text.length}`;
+            lineCount.textContent = `Lines: ${text.split('\n').length}`;
+        }
+        
+        // Show status message
+        function showStatus(message, type) {
+            statusMessage.textContent = message;
+            statusMessage.className = 'status-message ' + type;
+            setTimeout(() => {
+                statusMessage.className = 'status-message';
+            }, 5000);
+        }
+        
+        // Event listeners
+        formatBtn.addEventListener('click', formatCSS);
+        
+        clearBtn.addEventListener('click', () => {
+            inputCode.value = '';
+            outputCode.textContent = '';
+            updateCounts();
+            showStatus('Editor cleared', 'success');
+        });
+        
+        sampleBtn.addEventListener('click', () => {
+            inputCode.value = sampleCSS;
+            showStatus('Sample CSS loaded', 'success');
+            formatCSS();
+        });
+        
+        copyBtn.addEventListener('click', () => {
+            const text = outputCode.textContent;
+            if (!text) {
+                showStatus('No formatted CSS to copy', 'error');
+                return;
+            }
+            
+            navigator.clipboard.writeText(text)
+                .then(() => showStatus('CSS copied to clipboard', 'success'))
+                .catch(err => showStatus('Failed to copy: ' + err, 'error'));
+        });
+        
+        downloadBtn.addEventListener('click', () => {
+            const text = outputCode.textContent;
+            if (!text) {
+                showStatus('No formatted CSS to download', 'error');
+                return;
+            }
+            
+            const blob = new Blob([text], { type: 'text/css' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'formatted-styles.css';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            showStatus('CSS downloaded', 'success');
+        });
+        
+        minifyToggle.addEventListener('change', formatCSS);
+        indentSize.addEventListener('change', formatCSS);
+        
+        // Initialize
+        formatCSS();
+        
+        // Listen for system color scheme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+            if (!localStorage.getItem('darkMode')) {
+                document.body.classList.toggle('dark-mode', e.matches);
+                darkModeToggle.checked = e.matches;
+            }
+        });
+    </script>
+</body>
+</html>

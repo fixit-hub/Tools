@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" href="favicon-16x16.png" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="Crop images online with precision using our free Image Cropper tool. Easily trim photos to desired size and aspect ratio.">
+<meta name="keywords" content="image cropper, crop image, online crop tool, photo crop tool, resize image, trim image">
+<meta name="author" content="FixitHub">
+<meta property="og:title" content="FixitHub - Free Image Cropper Tool">
+<meta property="og:description" content="Crop images online with precision using our free Image Cropper tool. Easily trim photos to desired size and aspect ratio.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://fixithub.site/image-cropper">
+<meta property="og:image" content="https://fixithub.site/images/image-cropper.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://fixithub.site/image-cropper">
+<title>Image Cropper - FixitHub</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2131173131707389" crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --accent-color: #4895ef;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --success-color: #4bb543;
+            --danger-color: #ff3333;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+            transition: var(--transition);
+        }
+
+        body.dark-mode {
+            background-color: #121212;
+            color: #f1f1f1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 0;
+            box-shadow: var(--box-shadow);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover {
+            opacity: 0.8;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .ad-container {
+            margin: 20px 0;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.05);
+            padding: 10px;
+            border-radius: var(--border-radius);
+        }
+
+        .ad-container.dark-mode {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .main-title {
+            text-align: center;
+            margin: 30px 0;
+            color: var(--primary-color);
+        }
+
+        .tool-container {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .tool-container.dark-mode {
+            background-color: #1e1e1e;
+        }
+
+        .upload-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .upload-area {
+            width: 100%;
+            max-width: 500px;
+            height: 200px;
+            border: 2px dashed var(--primary-color);
+            border-radius: var(--border-radius);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .upload-area:hover {
+            background-color: rgba(67, 97, 238, 0.05);
+        }
+
+        .upload-area.dark-mode {
+            border-color: var(--accent-color);
+        }
+
+        .upload-area.dark-mode:hover {
+            background-color: rgba(72, 149, 239, 0.05);
+        }
+
+        .upload-icon {
+            font-size: 40px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .upload-text {
+            font-size: 16px;
+            color: var(--primary-color);
+            text-align: center;
+        }
+
+        .upload-text b {
+            font-weight: 600;
+        }
+
+        #file-input {
+            display: none;
+        }
+
+        .upload-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .upload-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .crop-container {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .crop-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .crop-wrapper {
+                flex-direction: row;
+            }
+        }
+
+        .image-container {
+            flex: 1;
+            min-height: 300px;
+            position: relative;
+        }
+
+        #image-preview {
+            max-width: 100%;
+            max-height: 400px;
+            display: block;
+        }
+
+        .controls {
+            flex: 0 0 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .control-group label {
+            font-weight: 500;
+        }
+
+        .dimension-inputs {
+            display: flex;
+            gap: 10px;
+        }
+
+        .dimension-inputs input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 14px;
+        }
+
+        .dimension-inputs.dark-mode input {
+            background-color: #2d2d2d;
+            border-color: #444;
+            color: #f1f1f1;
+        }
+
+        .aspect-ratio {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .aspect-ratio select {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 14px;
+        }
+
+        .aspect-ratio.dark-mode select {
+            background-color: #2d2d2d;
+            border-color: #444;
+            color: #f1f1f1;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .btn {
+            padding: 10px 15px;
+            border-radius: var(--border-radius);
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+            flex: 1;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+        .btn-success {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background-color: #3a9a32;
+        }
+
+        .btn-danger {
+            background-color: var(--danger-color);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background-color: #e60000;
+        }
+
+        .preview-container {
+            margin-top: 30px;
+            text-align: center;
+            display: none;
+        }
+
+        .preview-title {
+            margin-bottom: 15px;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        #result-preview {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .download-options {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .download-btn {
+            padding: 8px 15px;
+            border-radius: var(--border-radius);
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .download-btn:hover {
+            background-color: #3a7bc8;
+        }
+
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 30px 0;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-column ul li a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #adb5bd;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav ul li {
+                margin: 0 10px;
+            }
+
+            .dimension-inputs {
+                flex-direction: column;
+            }
+        }
+
+        /* Loading spinner */
+        .spinner {
+            display: none;
+            width: 40px;
+            height: 40px;
+            margin: 20px auto;
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #333;
+            color: white;
+            padding: 12px 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast.success {
+            background-color: var(--success-color);
+        }
+
+        .toast.error {
+            background-color: var(--danger-color);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <a href="index.html" class="logo">Image Cropper</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="contact-us.html">Contact Us</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </nav>
+            <button class="theme-toggle" id="theme-toggle">🌓</button>
+        </div>
+    </header>
+
+        <div class="tool-container">
+            <div class="upload-section">
+                <div class="upload-area" id="upload-area">
+                    <div class="upload-icon">📁</div>
+                    <p class="upload-text"><b>Drag & drop</b> your image here or <b>click to browse</b></p>
+                </div>
+                <input type="file" id="file-input" accept="image/jpeg, image/png, image/webp">
+                <button class="upload-btn" id="upload-btn">Select Image</button>
+            </div>
+
+            <div class="crop-container" id="crop-container">
+                <div class="crop-wrapper">
+                    <div class="image-container">
+                        <img id="image-preview" src="" alt="Image to crop">
+                    </div>
+                    <div class="controls">
+                        <div class="control-group">
+                            <label for="crop-width">Crop Dimensions (px)</label>
+                            <div class="dimension-inputs">
+                                <input type="number" id="crop-width" placeholder="Width" min="1">
+                                <input type="number" id="crop-height" placeholder="Height" min="1">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label for="aspect-ratio">Aspect Ratio</label>
+                            <div class="aspect-ratio">
+                                <select id="aspect-ratio">
+                                    <option value="free">Free</option>
+                                    <option value="1:1">Square (1:1)</option>
+                                    <option value="4:3">Standard (4:3)</option>
+                                    <option value="16:9">Widescreen (16:9)</option>
+                                    <option value="9:16">Portrait (9:16)</option>
+                                    <option value="2:3">2:3</option>
+                                    <option value="3:2">3:2</option>
+                                    <option value="custom">Custom</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-group" id="custom-ratio-group" style="display: none;">
+                            <label for="custom-ratio">Custom Ratio</label>
+                            <div class="dimension-inputs">
+                                <input type="number" id="custom-ratio-width" placeholder="Width" min="1" value="1">
+                                <input type="number" id="custom-ratio-height" placeholder="Height" min="1" value="1">
+                            </div>
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn btn-primary" id="crop-btn">Crop Image</button>
+                            <button class="btn btn-secondary" id="reset-btn">Reset</button>
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn btn-success" id="rotate-left-btn">↺ Rotate Left</button>
+                            <button class="btn btn-success" id="rotate-right-btn">↻ Rotate Right</button>
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn btn-danger" id="cancel-btn">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="spinner" id="spinner"></div>
+
+            <div class="preview-container" id="preview-container">
+                <h3 class="preview-title">Cropped Image Preview</h3>
+                <img id="result-preview" src="" alt="Cropped image">
+                <div class="download-options">
+                    <button class="download-btn" id="download-jpg">
+                        <span>⬇️</span> Download JPG
+                    </button>
+                    <button class="download-btn" id="download-png">
+                        <span>⬇️</span> Download PNG
+                    </button>
+                    <button class="download-btn" id="download-webp">
+                        <span>⬇️</span> Download WebP
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Middle Ad Banner -->
+        <div class="ad-container">
+            <!-- Google AdSense Ad Unit -->
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+                crossorigin="anonymous"></script>
+            <!-- Middle Rectangle Ad -->
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                data-ad-slot="XXXXXXXXXX"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>FixitHub</h3>
+                    <p>Your one-stop destination for free online tools to make your digital life easier.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Tools</h3>
+                    <ul>
+                        <li><a href="image-cropper.html">Image Cropper</a></li>
+                        <li><a href="pdf-compressor.html">PDF Compressor</a></li>
+                        <li><a href="password-generator.html">Password Generator</a></li>
+                        <li><a href="qr-code-generator.html">QR Code Generator</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                        <li><a href="security.html">Security</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="term.html">Terms of Service</a></li>
+                        <li><a href="cookie-policy.html">Cookie Policy</a></li>
+                        <li><a href="feedback.html">Feedback</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 FixitHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast"></div>
+
+    <!-- Sidebar Ad (visible on desktop only) -->
+    <div class="ad-container" style="position: fixed; right: 20px; top: 50%; transform: translateY(-50%); width: 160px; display: none;" id="sidebar-ad">
+        <!-- Google AdSense Ad Unit -->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+            crossorigin="anonymous"></script>
+        <!-- Sidebar Ad -->
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+            data-ad-slot="XXXXXXXXXX"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM Elements
+            const uploadArea = document.getElementById('upload-area');
+            const fileInput = document.getElementById('file-input');
+            const uploadBtn = document.getElementById('upload-btn');
+            const cropContainer = document.getElementById('crop-container');
+            const imagePreview = document.getElementById('image-preview');
+            const cropWidth = document.getElementById('crop-width');
+            const cropHeight = document.getElementById('crop-height');
+            const aspectRatio = document.getElementById('aspect-ratio');
+            const customRatioGroup = document.getElementById('custom-ratio-group');
+            const customRatioWidth = document.getElementById('custom-ratio-width');
+            const customRatioHeight = document.getElementById('custom-ratio-height');
+            const cropBtn = document.getElementById('crop-btn');
+            const resetBtn = document.getElementById('reset-btn');
+            const rotateLeftBtn = document.getElementById('rotate-left-btn');
+            const rotateRightBtn = document.getElementById('rotate-right-btn');
+            const cancelBtn = document.getElementById('cancel-btn');
+            const previewContainer = document.getElementById('preview-container');
+            const resultPreview = document.getElementById('result-preview');
+            const downloadJpg = document.getElementById('download-jpg');
+            const downloadPng = document.getElementById('download-png');
+            const downloadWebp = document.getElementById('download-webp');
+            const spinner = document.getElementById('spinner');
+            const toast = document.getElementById('toast');
+            const themeToggle = document.getElementById('theme-toggle');
+            const sidebarAd = document.getElementById('sidebar-ad');
+
+            // Variables
+            let cropper;
+            let currentImageFile;
+            let croppedImageBlob;
+
+            // Initialize Cropper when image is loaded
+            function initCropper() {
+                if (cropper) {
+                    cropper.destroy();
+                }
+
+                cropper = new Cropper(imagePreview, {
+                    aspectRatio: NaN, // Free aspect ratio by default
+                    viewMode: 1,
+                    autoCropArea: 0.8,
+                    responsive: true,
+                    crop: function(event) {
+                        cropWidth.value = Math.round(event.detail.width);
+                        cropHeight.value = Math.round(event.detail.height);
+                    }
+                });
+
+                // Show crop container
+                cropContainer.style.display = 'block';
+            }
+
+            // Handle file selection
+            function handleFileSelect(file) {
+                if (!file.type.match('image.*')) {
+                    showToast('Please select an image file (JPG, PNG, WebP)', 'error');
+                    return;
+                }
+
+                if (file.size > 5 * 1024 * 1024) {
+                    showToast('Image size should be less than 5MB', 'error');
+                    return;
+                }
+
+                currentImageFile = file;
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    imagePreview.src = e.target.result;
+                    imagePreview.onload = function() {
+                        initCropper();
+                        // Set initial dimensions
+                        cropWidth.value = imagePreview.naturalWidth;
+                        cropHeight.value = imagePreview.naturalHeight;
+                    };
+                };
+
+                reader.readAsDataURL(file);
+            }
+
+            // Event Listeners
+            uploadArea.addEventListener('click', function() {
+                fileInput.click();
+            });
+
+            uploadBtn.addEventListener('click', function() {
+                fileInput.click();
+            });
+
+            fileInput.addEventListener('change', function(e) {
+                if (e.target.files.length > 0) {
+                    handleFileSelect(e.target.files[0]);
+                }
+            });
+
+            // Drag and drop functionality
+            uploadArea.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                uploadArea.style.backgroundColor = 'rgba(67, 97, 238, 0.1)';
+            });
+
+            uploadArea.addEventListener('dragleave', function() {
+                uploadArea.style.backgroundColor = '';
+            });
+
+            uploadArea.addEventListener('drop', function(e) {
+                e.preventDefault();
+                uploadArea.style.backgroundColor = '';
+                if (e.dataTransfer.files.length > 0) {
+                    handleFileSelect(e.dataTransfer.files[0]);
+                }
+            });
+
+            // Aspect ratio change
+            aspectRatio.addEventListener('change', function() {
+                if (aspectRatio.value === 'custom') {
+                    customRatioGroup.style.display = 'block';
+                    updateCustomAspectRatio();
+                } else {
+                    customRatioGroup.style.display = 'none';
+                    let ratio = NaN; // Free by default
+                    
+                    if (aspectRatio.value !== 'free') {
+                        const parts = aspectRatio.value.split(':');
+                        ratio = parseInt(parts[0]) / parseInt(parts[1]);
+                    }
+                    
+                    if (cropper) {
+                        cropper.setAspectRatio(ratio);
+                    }
+                }
+            });
+
+            // Custom ratio inputs
+            customRatioWidth.addEventListener('input', updateCustomAspectRatio);
+            customRatioHeight.addEventListener('input', updateCustomAspectRatio);
+
+            function updateCustomAspectRatio() {
+                if (aspectRatio.value === 'custom' && cropper) {
+                    const width = parseInt(customRatioWidth.value) || 1;
+                    const height = parseInt(customRatioHeight.value) || 1;
+                    const ratio = width / height;
+                    cropper.setAspectRatio(ratio);
+                }
+            }
+
+            // Dimension inputs
+            cropWidth.addEventListener('input', function() {
+                if (cropper && !isNaN(cropWidth.value) && cropWidth.value > 0) {
+                    const width = parseInt(cropWidth.value);
+                    const height = parseInt(cropHeight.value);
+                    if (height > 0) {
+                        cropper.setAspectRatio(width / height);
+                    }
+                }
+            });
+
+            cropHeight.addEventListener('input', function() {
+                if (cropper && !isNaN(cropHeight.value) && cropHeight.value > 0) {
+                    const width = parseInt(cropWidth.value);
+                    const height = parseInt(cropHeight.value);
+                    if (width > 0) {
+                        cropper.setAspectRatio(width / height);
+                    }
+                }
+            });
+
+            // Crop button
+            cropBtn.addEventListener('click', function() {
+                if (!cropper) return;
+
+                spinner.style.display = 'block';
+                
+                // Get the cropped canvas
+                const canvas = cropper.getCroppedCanvas({
+                    width: parseInt(cropWidth.value) || undefined,
+                    height: parseInt(cropHeight.value) || undefined,
+                    minWidth: 1,
+                    minHeight: 1,
+                    maxWidth: 4096,
+                    maxHeight: 4096,
+                    fillColor: '#fff',
+                    imageSmoothingEnabled: true,
+                    imageSmoothingQuality: 'high',
+                });
+
+                if (!canvas) {
+                    showToast('Could not crop image. Please try again.', 'error');
+                    spinner.style.display = 'none';
+                    return;
+                }
+
+                // Convert canvas to blob
+                canvas.toBlob(function(blob) {
+                    croppedImageBlob = blob;
+                    resultPreview.src = URL.createObjectURL(blob);
+                    previewContainer.style.display = 'block';
+                    spinner.style.display = 'none';
+                    showToast('Image cropped successfully!', 'success');
+                    
+                    // Scroll to preview
+                    previewContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 'image/jpeg', 0.92);
+            });
+
+            // Reset button
+            resetBtn.addEventListener('click', function() {
+                if (cropper) {
+                    cropper.reset();
+                    cropWidth.value = imagePreview.naturalWidth;
+                    cropHeight.value = imagePreview.naturalHeight;
+                }
+            });
+
+            // Rotate buttons
+            rotateLeftBtn.addEventListener('click', function() {
+                if (cropper) {
+                    cropper.rotate(-90);
+                }
+            });
+
+            rotateRightBtn.addEventListener('click', function() {
+                if (cropper) {
+                    cropper.rotate(90);
+                }
+            });
+
+            // Cancel button
+            cancelBtn.addEventListener('click', function() {
+                if (cropper) {
+                    cropper.destroy();
+                    cropper = null;
+                }
+                imagePreview.src = '';
+                cropContainer.style.display = 'none';
+                previewContainer.style.display = 'none';
+                fileInput.value = '';
+            });
+
+            // Download buttons
+            downloadJpg.addEventListener('click', function() {
+                if (croppedImageBlob) {
+                    downloadImage(croppedImageBlob, 'cropped-image.jpg');
+                }
+            });
+
+            downloadPng.addEventListener('click', function() {
+                if (!cropper) return;
+                
+                const canvas = cropper.getCroppedCanvas();
+                canvas.toBlob(function(blob) {
+                    downloadImage(blob, 'cropped-image.png');
+                }, 'image/png');
+            });
+
+            downloadWebp.addEventListener('click', function() {
+                if (!cropper) return;
+                
+                const canvas = cropper.getCroppedCanvas();
+                canvas.toBlob(function(blob) {
+                    downloadImage(blob, 'cropped-image.webp');
+                }, 'image/webp', 0.92);
+            });
+
+            // Download helper function
+            function downloadImage(blob, filename) {
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = filename;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                showToast('Download started!', 'success');
+            }
+
+            // Toast notification
+            function showToast(message, type) {
+                toast.textContent = message;
+                toast.className = 'toast ' + type;
+                toast.classList.add('show');
+                
+                setTimeout(function() {
+                    toast.classList.remove('show');
+                }, 3000);
+            }
+
+            // Theme toggle
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+                document.querySelectorAll('.tool-container').forEach(el => el.classList.toggle('dark-mode'));
+                document.querySelectorAll('.upload-area').forEach(el => el.classList.toggle('dark-mode'));
+                document.querySelectorAll('.dimension-inputs').forEach(el => el.classList.toggle('dark-mode'));
+                document.querySelectorAll('.aspect-ratio').forEach(el => el.classList.toggle('dark-mode'));
+                document.querySelectorAll('.ad-container').forEach(el => el.classList.toggle('dark-mode'));
+                
+                // Save preference to localStorage
+                const isDarkMode = document.body.classList.contains('dark-mode');
+                localStorage.setItem('darkMode', isDarkMode);
+            });
+
+            // Check for saved theme preference
+            if (localStorage.getItem('darkMode') === 'true') {
+                document.body.classList.add('dark-mode');
+                document.querySelectorAll('.tool-container').forEach(el => el.classList.add('dark-mode'));
+                document.querySelectorAll('.upload-area').forEach(el => el.classList.add('dark-mode'));
+                document.querySelectorAll('.dimension-inputs').forEach(el => el.classList.add('dark-mode'));
+                document.querySelectorAll('.aspect-ratio').forEach(el => el.classList.add('dark-mode'));
+                document.querySelectorAll('.ad-container').forEach(el => el.classList.add('dark-mode'));
+            }
+
+            // Show sidebar ad on desktop
+            function checkSidebarAd() {
+                if (window.innerWidth >= 1200) {
+                    sidebarAd.style.display = 'block';
+                } else {
+                    sidebarAd.style.display = 'none';
+                }
+            }
+
+            window.addEventListener('resize', checkSidebarAd);
+            checkSidebarAd();
+        });
+    </script>
+</body>
+</html>

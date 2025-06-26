@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" href="favicon-16x16.png" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="Beautify, format, and clean your JavaScript code instantly with our free JavaScript Formatter tool. Easy, fast, and accurate code formatting.">
+<meta name="keywords" content="JavaScript formatter, JS beautifier, format JS code, clean JavaScript, online code beautifier, FixitHub JS tool">
+<meta name="author" content="FixitHub">
+<meta property="og:title" content="FixitHub - Free JavaScript Formatter Tool">
+<meta property="og:description" content="Beautify and clean your JavaScript code online with our free JS Formatter. Fast, easy, and accurate formatting.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://fixithub.site/javascript-formatter">
+<meta property="og:image" content="https://fixithub.site/images/javascript-formatter.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FixitHub - Free JavaScript Formatter Tool">
+<meta name="twitter:description" content="Online JavaScript code beautifier and formatter. Format JS instantly with FixitHub.">
+<link rel="canonical" href="https://fixithub.site/javascript-formatter">
+<title>JavaScript Formatter - FixitHub</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2131173131707389" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.7/beautify.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.7/beautify-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.7/beautify-html.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.15.2/ace.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.15.2/mode-javascript.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.15.2/theme-monokai.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.15.2/theme-chrome.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        :root {
+            --primary-color: #4a6bff;
+            --secondary-color: #6c757d;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --warning-color: #ffc107;
+            --info-color: #17a2b8;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --white: #ffffff;
+            --black: #000000;
+            --gray-100: #f8f9fa;
+            --gray-200: #e9ecef;
+            --gray-300: #dee2e6;
+            --gray-400: #ced4da;
+            --gray-500: #adb5bd;
+            --gray-600: #6c757d;
+            --gray-700: #495057;
+            --gray-800: #343a40;
+            --gray-900: #212529;
+            --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            --font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            --border-radius: 0.25rem;
+            --box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #5d7dff;
+            --secondary-color: #6c757d;
+            --success-color: #3cb371;
+            --danger-color: #ff6b6b;
+            --warning-color: #ffd166;
+            --info-color: #4ecdc4;
+            --light-color: #343a40;
+            --dark-color: #f8f9fa;
+            --white: #212529;
+            --black: #f8f9fa;
+            --gray-100: #212529;
+            --gray-200: #343a40;
+            --gray-300: #495057;
+            --gray-400: #6c757d;
+            --gray-500: #adb5bd;
+            --gray-600: #ced4da;
+            --gray-700: #dee2e6;
+            --gray-800: #e9ecef;
+            --gray-900: #f8f9fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--gray-100);
+            color: var(--black);
+            line-height: 1.6;
+            transition: var(--transition);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 0.5rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+
+        nav ul li a {
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--black);
+            cursor: pointer;
+        }
+
+        .hero {
+            padding: 3rem 0;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(74, 107, 255, 0.1) 0%, rgba(74, 107, 255, 0.05) 100%);
+            border-radius: 0 0 1rem 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--gray-600);
+            max-width: 800px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .tool-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .editor-container, .output-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .editor-header, .output-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .editor-title, .output-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .editor-actions, .output-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-size: 0.9rem;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: #3a56d4;
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: var(--white);
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+        .btn-success {
+            background-color: var(--success-color);
+            color: var(--white);
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+        }
+
+        .btn-danger {
+            background-color: var(--danger-color);
+            color: var(--white);
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+
+        .btn-warning {
+            background-color: var(--warning-color);
+            color: var(--black);
+        }
+
+        .btn-warning:hover {
+            background-color: #e0a800;
+        }
+
+        .btn-info {
+            background-color: var(--info-color);
+            color: var(--white);
+        }
+
+        .btn-info:hover {
+            background-color: #138496;
+        }
+
+        .btn-light {
+            background-color: var(--gray-200);
+            color: var(--black);
+        }
+
+        .btn-light:hover {
+            background-color: #dae0e5;
+        }
+
+        .btn-dark {
+            background-color: var(--dark-color);
+            color: var(--white);
+        }
+
+        .btn-dark:hover {
+            background-color: #23272b;
+        }
+
+        .editor-wrapper, .output-wrapper {
+            border: 1px solid var(--gray-300);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            position: relative;
+            height: 300px;
+        }
+
+        #editor, #output {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            font-family: var(--font-monospace);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .settings-panel {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--box-shadow);
+        }
+
+        .settings-title {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .settings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .setting-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .setting-label {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--gray-700);
+        }
+
+        .setting-control {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        select, input[type="number"] {
+            padding: 0.5rem;
+            border: 1px solid var(--gray-300);
+            border-radius: var(--border-radius);
+            background-color: var(--white);
+            color: var(--black);
+            font-family: var(--font-sans);
+            width: 100%;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+
+        .checkbox-label input {
+            width: auto;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            border: none;
+            font-size: 1.25rem;
+        }
+
+        .ad-container {
+            background-color: var(--gray-200);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin: 2rem 0;
+            text-align: center;
+            border: 1px dashed var(--gray-400);
+        }
+
+        .ad-label {
+            font-size: 0.8rem;
+            color: var(--gray-600);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .features-section {
+            padding: 3rem 0;
+            background-color: var(--white);
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+
+        .feature-card {
+            background-color: var(--gray-100);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--black);
+        }
+
+        .feature-desc {
+            color: var(--gray-600);
+        }
+
+        .faq-section {
+            padding: 3rem 0;
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+        }
+
+        .faq-question {
+            padding: 1rem 1.5rem;
+            background-color: var(--primary-color);
+            color: var(--white);
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            padding: 1rem 1.5rem;
+            display: none;
+        }
+
+        .faq-answer.show {
+            display: block;
+        }
+
+        footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 3rem 0 1.5rem;
+            margin-top: auto;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .footer-desc {
+            margin-bottom: 1rem;
+            color: var(--gray-500);
+        }
+
+        .footer-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--gray-500);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: var(--white);
+            font-size: 1.25rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--gray-700);
+            color: var(--gray-500);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav {
+                width: 100%;
+                margin-top: 1rem;
+                display: none;
+            }
+
+            nav.show {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            nav ul li {
+                margin-left: 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .editor-actions, .output-actions {
+                justify-content: center;
+                width: 100%;
+            }
+
+            .btn {
+                flex: 1 1 auto;
+            }
+
+            .settings-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Tooltip styles */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: var(--dark-color);
+            color: var(--white);
+            text-align: center;
+            border-radius: var(--border-radius);
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -60px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.8rem;
+        }
+
+        .tooltip .tooltiptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: var(--dark-color) transparent transparent transparent;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <i class="fas fa-code"></i> JS Formatter
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="contact-us.html">Contact Us</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    
+
+        <div class="settings-panel">
+            <h3 class="settings-title">Formatting Options</h3>
+            <div class="settings-grid">
+                <div class="setting-group">
+                    <label class="setting-label">Indent Size</label>
+                    <input type="number" id="indentSize" min="1" max="8" value="2">
+                </div>
+                <div class="setting-group">
+                    <label class="setting-label">Indent Type</label>
+                    <select id="indentType">
+                        <option value="space">Spaces</option>
+                        <option value="tab">Tabs</option>
+                    </select>
+                </div>
+                <div class="setting-group">
+                    <label class="setting-label">Wrap Line Length</label>
+                    <input type="number" id="wrapLineLength" min="0" value="80">
+                </div>
+                <div class="setting-group">
+                    <label class="setting-label">Quote Style</label>
+                    <select id="quoteStyle">
+                        <option value="single">Single Quotes</option>
+                        <option value="double">Double Quotes</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </div>
+                <div class="setting-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="braceStyle" checked>
+                        <span>Brace on same line</span>
+                    </label>
+                </div>
+                <div class="setting-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="preserveNewlines" checked>
+                        <span>Preserve newlines</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="tool-container">
+            <div class="editor-container">
+                <div class="editor-header">
+                    <h3 class="editor-title">Input JavaScript Code</h3>
+                    <div class="editor-actions">
+                        <button class="btn btn-primary" id="formatBtn">
+                            <i class="fas fa-magic"></i> Format
+                        </button>
+                        <button class="btn btn-success" id="minifyBtn">
+                            <i class="fas fa-compress-alt"></i> Minify
+                        </button>
+                        <button class="btn btn-danger" id="clearBtn">
+                            <i class="fas fa-trash"></i> Clear
+                        </button>
+                    </div>
+                </div>
+                <div class="editor-wrapper">
+                    <div id="editor">// Paste your JavaScript code here
+function example() {
+  console.log('Hello World');
+  return {
+    name: 'John Doe',
+    age: 30,
+    address: {
+      street: '123 Main St',
+      city: 'New York'
+    }
+  };
+}</div>
+                </div>
+            </div>
+
+            <!-- Middle Ad Banner -->
+            <div class="ad-container">
+                <div class="ad-label">Advertisement</div>
+                <!-- Google AdSense Ad Unit -->
+                <div id="middle-ad" style="min-height: 250px; background-color: #f0f0f0; display: flex; align-items: center; justify-content: center;">
+                    <span>Ad Space (300x250)</span>
+                </div>
+            </div>
+
+            <div class="output-container">
+                <div class="output-header">
+                    <h3 class="output-title">Formatted Output</h3>
+                    <div class="output-actions">
+                        <button class="btn btn-secondary" id="copyBtn">
+                            <i class="far fa-copy"></i> Copy
+                        </button>
+                        <button class="btn btn-info" id="downloadBtn">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                        <button class="btn btn-warning" id="swapViewBtn">
+                            <i class="fas fa-exchange-alt"></i> Swap View
+                        </button>
+                    </div>
+                </div>
+                <div class="output-wrapper">
+                    <div id="output"></div>
+                </div>
+            </div>
+        </div>
+
+        <section class="features-section">
+            <h2 class="section-title">Why Use Our JavaScript Formatter?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="feature-title">Lightning Fast</h3>
+                    <p class="feature-desc">Our tool processes your code instantly, saving you valuable development time.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Secure & Private</h3>
+                    <p class="feature-desc">Your code never leaves your browser - we don't store or track your data.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Mobile Friendly</h3>
+                    <p class="feature-desc">Works perfectly on all devices, from desktop to smartphone.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-sliders-h"></i>
+                    </div>
+                    <h3 class="feature-title">Customizable</h3>
+                    <p class="feature-desc">Adjust formatting options to match your coding style preferences.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bottom Ad Banner -->
+        <div class="ad-container">
+            <div class="ad-label">Advertisement</div>
+            <!-- Google AdSense Ad Unit -->
+            <div id="bottom-ad" style="min-height: 90px; background-color: #f0f0f0; display: flex; align-items: center; justify-content: center;">
+                <span>Ad Space (728x90)</span>
+            </div>
+        </div>
+
+        <section class="faq-section">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What does a JavaScript formatter do?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>A JavaScript formatter (or beautifier) takes messy, minified, or hard-to-read JavaScript code and reformats it with proper indentation, line breaks, and spacing to make it more readable and maintainable.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What's the difference between formatting and minifying?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Formatting makes code more readable by adding whitespace and structure, while minifying does the opposite - it removes all unnecessary characters to reduce file size for production use.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Is my code safe when using this tool?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! All processing happens in your browser - we don't send your code to any servers or store it anywhere. Your code remains completely private.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Can I customize the formatting style?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! Use the formatting options panel above the editor to adjust indentation, line wrapping, quote style, and other preferences to match your coding style.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Does this tool validate JavaScript syntax?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>While our tool will try to format any JavaScript code, it doesn't perform full syntax validation. For complete validation, consider using a dedicated linter like ESLint.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <a href="#" class="footer-logo">FixitHub</a>
+                    <p class="footer-desc">Providing free, high-quality developer tools to make your coding life easier.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links-container">
+                    <h4 class="footer-title">Tools</h4>
+                    <ul class="footer-links">
+                        <li><a href="javascript-formatter.html">JavaScript Formatter</a></li>
+                        <li><a href="html-formatter.html">HTML Formatter</a></li>
+                        <li><a href="css-formatter.html">CSS Formatter</a></li>
+                        <li><a href="json-formatter.html">JSON Formatter</a></li>
+                        <li><a href="xml-formatter.html">XML Formatter</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-container">
+                    <h4 class="footer-title">Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="feedback.html">Feedback</a></li>
+                        <li><a href="security.html">security</a></li>
+                        <li><a href="about-us.html">Partners</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-container">
+                    <h4 class="footer-title">Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="cookie-policy.html">Cookie Policy</a></li>
+                        <li><a href="user-guide.html">User Guide</a></li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 FixitHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('show');
+        });
+
+        // Theme toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+
+        // Check for saved theme preference or use preferred color scheme
+        const savedTheme = localStorage.getItem('theme') || 
+                          (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        
+        // Apply the saved theme
+        if (savedTheme === 'dark') {
+            body.setAttribute('data-theme', 'dark');
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+        });
+
+        // Initialize ACE editors
+        const editor = ace.edit("editor");
+        editor.setTheme("ace/theme/chrome");
+        editor.session.setMode("ace/mode/javascript");
+        editor.setOptions({
+            fontSize: "14px",
+            enableBasicAutocompletion: true,
+            enableLiveAutocompletion: true,
+            showLineNumbers: true,
+            showGutter: true,
+            tabSize: 2
+        });
+
+        const output = ace.edit("output");
+        output.setTheme("ace/theme/chrome");
+        output.session.setMode("ace/mode/javascript");
+        output.setOptions({
+            fontSize: "14px",
+            readOnly: true,
+            highlightActiveLine: false,
+            highlightGutterLine: false,
+            showLineNumbers: true,
+            showGutter: true,
+            tabSize: 2
+        });
+
+        // Default output
+        output.setValue("// Your formatted or minified code will appear here", -1);
+
+        // Tool buttons functionality
+        document.getElementById('formatBtn').addEventListener('click', formatCode);
+        document.getElementById('minifyBtn').addEventListener('click', minifyCode);
+        document.getElementById('clearBtn').addEventListener('click', clearCode);
+        document.getElementById('copyBtn').addEventListener('click', copyOutput);
+        document.getElementById('downloadBtn').addEventListener('click', downloadOutput);
+        document.getElementById('swapViewBtn').addEventListener('click', swapView);
+
+        let currentView = 'formatted'; // 'formatted' or 'minified'
+
+        function getFormattingOptions() {
+            return {
+                indent_size: parseInt(document.getElementById('indentSize').value) || 2,
+                indent_char: document.getElementById('indentType').value === 'tab' ? '\t' : ' ',
+                max_preserve_newlines: document.getElementById('preserveNewlines').checked ? 5 : 0,
+                preserve_newlines: document.getElementById('preserveNewlines').checked,
+                wrap_line_length: parseInt(document.getElementById('wrapLineLength').value) || 80,
+                brace_style: document.getElementById('braceStyle').checked ? 'collapse' : 'expand',
+                jslint_happy: false,
+                keep_array_indentation: false,
+                keep_function_indentation: false,
+                eval_code: false,
+                unescape_strings: false,
+                wrap_attributes: 'auto',
+                wrap_attributes_indent_size: 2,
+                end_with_newline: false,
+                indent_empty_lines: false,
+                comma_first: false,
+                operator_position: 'before-newline',
+                indent_scripts: 'normal',
+                quote_style: document.getElementById('quoteStyle').value === 'single' ? 1 : 
+                             (document.getElementById('quoteStyle').value === 'double' ? 2 : 0)
+            };
+        }
+
+        function formatCode() {
+            try {
+                const code = editor.getValue();
+                if (!code.trim()) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Empty Input',
+                        text: 'Please enter some JavaScript code to format.'
+                    });
+                    return;
+                }
+
+                const options = getFormattingOptions();
+                const formattedCode = js_beautify(code, options);
+                output.setValue(formattedCode, -1);
+                currentView = 'formatted';
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Code Formatted',
+                    text: 'Your JavaScript code has been successfully formatted.',
+                    timer: 2000,
+                    showConfirmButton: false
+                });
+            } catch (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Formatting Error',
+                    text: 'An error occurred while formatting your code. Please check your JavaScript syntax.'
+                });
+                console.error('Formatting error:', error);
+            }
+        }
+
+        function minifyCode() {
+            try {
+                const code = editor.getValue();
+                if (!code.trim()) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Empty Input',
+                        text: 'Please enter some JavaScript code to minify.'
+                    });
+                    return;
+                }
+
+                // First beautify to ensure proper structure, then minify
+                const options = getFormattingOptions();
+                const formattedCode = js_beautify(code, options);
+                const minifiedCode = formattedCode
+                    .replace(/\/\*[\s\S]*?\*\/|([^\\:]|^)\/\/.*$/gm, '') // Remove comments
+                    .replace(/\s+/g, ' ') // Collapse whitespace
+                    .replace(/\s?([\{\}\[\]\(\)\=\+\-\*\/%!<>?:&|,;])\s?/g, '$1') // Remove spaces around operators
+                    .replace(/;\s+/g, ';') // Remove spaces after semicolons
+                    .replace(/,\s+/g, ',') // Remove spaces after commas
+                    .trim();
+
+                output.setValue(minifiedCode, -1);
+                currentView = 'minified';
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Code Minified',
+                    text: 'Your JavaScript code has been successfully minified.',
+                    timer: 2000,
+                    showConfirmButton: false
+                });
+            } catch (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Minification Error',
+                    text: 'An error occurred while minifying your code. Please check your JavaScript syntax.'
+                });
+                console.error('Minification error:', error);
+            }
+        }
+
+        function clearCode() {
+            Swal.fire({
+                title: 'Clear Editor',
+                text: 'Are you sure you want to clear the input editor?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, clear it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    editor.setValue('', -1);
+                    output.setValue('// Your formatted or minified code will appear here', -1);
+                    currentView = 'formatted';
+                }
+            });
+        }
+
+        function copyOutput() {
+            const code = output.getValue();
+            if (!code.trim() || code === '// Your formatted or minified code will appear here') {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Nothing to Copy',
+                    text: 'Please format or minify your code first.'
+                });
+                return;
+            }
+
+            navigator.clipboard.writeText(code).then(() => {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Copied!',
+                    text: 'The output code has been copied to your clipboard.',
+                    timer: 2000,
+                    showConfirmButton: false
+                });
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Copy Failed',
+                    text: 'Failed to copy text to clipboard. Please try again.'
+                });
+            });
+        }
+
+        function downloadOutput() {
+            const code = output.getValue();
+            if (!code.trim() || code === '// Your formatted or minified code will appear here') {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Nothing to Download',
+                    text: 'Please format or minify your code first.'
+                });
+                return;
+            }
+
+            const filename = currentView === 'formatted' ? 'formatted-code.js' : 'minified-code.js';
+            const blob = new Blob([code], { type: 'text/javascript' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Download Started',
+                text: `Your ${currentView} code is being downloaded as ${filename}.`,
+                timer: 2000,
+                showConfirmButton: false
+            });
+        }
+
+        function swapView() {
+            const code = output.getValue();
+            if (!code.trim() || code === '// Your formatted or minified code will appear here') {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Nothing to Swap',
+                    text: 'Please format or minify your code first.'
+                });
+                return;
+            }
+
+            if (currentView === 'formatted') {
+                // Minify the currently formatted code
+                const minifiedCode = code
+                    .replace(/\/\*[\s\S]*?\*\/|([^\\:]|^)\/\/.*$/gm, '')
+                    .replace(/\s+/g, ' ')
+                    .replace(/\s?([\{\}\[\]\(\)\=\+\-\*\/%!<>?:&|,;])\s?/g, '$1')
+                    .replace(/;\s+/g, ';')
+                    .replace(/,\s+/g, ',')
+                    .trim();
+                output.setValue(minifiedCode, -1);
+                currentView = 'minified';
+            } else {
+                // Format the currently minified code
+                const options = getFormattingOptions();
+                const formattedCode = js_beautify(code, options);
+                output.setValue(formattedCode, -1);
+                currentView = 'formatted';
+            }
+        }
+
+        // FAQ accordion functionality
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const isOpen = answer.classList.contains('show');
+                
+                // Close all answers first
+                document.querySelectorAll('.faq-answer').forEach(ans => {
+                    ans.classList.remove('show');
+                });
+                
+                // Toggle the clicked one if it wasn't open
+                if (!isOpen) {
+                    answer.classList.add('show');
+                }
+            });
+        });
+
+        // Sample code button
+        document.getElementById('sampleBtn')?.addEventListener('click', () => {
+            editor.setValue(`// Sample JavaScript code
+function calculateTotal(items, taxRate, discount) {
+  let subtotal = items.reduce((sum, item) => sum + item.price, 0);
+  let tax = subtotal * taxRate;
+  let total = subtotal + tax - discount;
+  
+  return {
+    subtotal: subtotal.toFixed(2),
+    tax: tax.toFixed(2),
+    discount: discount.toFixed(2),
+    total: total.toFixed(2)
+  };
+}
+
+const items = [
+  { name: 'Book', price: 12.99 },
+  { name: 'Pen', price: 2.50 },
+  { name: 'Notebook', price: 5.75 }
+];
+
+const result = calculateTotal(items, 0.08, 5.00);
+console.log('Order Summary:', result);`, -1);
+        });
+
+        // Initialize with formatted sample code
+        formatCode();
+
+        // Google AdSense integration (placeholder - replace with your actual AdSense code)
+        function loadAdSense() {
+            // This is a placeholder for AdSense code
+            // Replace with your actual AdSense publisher ID and ad unit codes
+            const adScript = document.createElement('script');
+            adScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_PUBLISHER_ID';
+            adScript.async = true;
+            adScript.crossOrigin = 'anonymous';
+            document.head.appendChild(adScript);
+            
+            // Top ad
+            const topAd = document.getElementById('top-ad');
+            if (topAd) {
+                const adCode = document.createElement('ins');
+                adCode.className = 'adsbygoogle';
+                adCode.style.display = 'block';
+                adCode.setAttribute('data-ad-client', 'ca-pub-YOUR_PUBLISHER_ID');
+                adCode.setAttribute('data-ad-slot', 'YOUR_TOP_AD_SLOT');
+                adCode.setAttribute('data-ad-format', 'auto');
+                adCode.setAttribute('data-full-width-responsive', 'true');
+                topAd.innerHTML = '';
+                topAd.appendChild(adCode);
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            }
+            
+            // Middle ad
+            const middleAd = document.getElementById('middle-ad');
+            if (middleAd) {
+                const adCode = document.createElement('ins');
+                adCode.className = 'adsbygoogle';
+                adCode.style.display = 'block';
+                adCode.setAttribute('data-ad-client', 'ca-pub-YOUR_PUBLISHER_ID');
+                adCode.setAttribute('data-ad-slot', 'YOUR_MIDDLE_AD_SLOT');
+                adCode.setAttribute('data-ad-format', 'auto');
+                adCode.setAttribute('data-full-width-responsive', 'true');
+                middleAd.innerHTML = '';
+                middleAd.appendChild(adCode);
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            }
+            
+            // Bottom ad
+            const bottomAd = document.getElementById('bottom-ad');
+            if (bottomAd) {
+                const adCode = document.createElement('ins');
+                adCode.className = 'adsbygoogle';
+                adCode.style.display = 'block';
+                adCode.setAttribute('data-ad-client', 'ca-pub-YOUR_PUBLISHER_ID');
+                adCode.setAttribute('data-ad-slot', 'YOUR_BOTTOM_AD_SLOT');
+                adCode.setAttribute('data-ad-format', 'auto');
+                adCode.setAttribute('data-full-width-responsive', 'true');
+                bottomAd.innerHTML = '';
+                bottomAd.appendChild(adCode);
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            }
+        }
+
+        // Load AdSense when the page is fully loaded
+        window.addEventListener('load', loadAdSense);
+
+        // JSON-LD structured data for SEO
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.text = JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "JavaScript Formatter & Minifier Tool",
+            "url": "https://fixithub.com/javascript-formatter",
+            "description": "Free online JavaScript formatter and minifier tool. Beautify, validate, and minify your JS code with our powerful formatting tool.",
+            "applicationCategory": "DeveloperTools",
+            "operatingSystem": "Any",
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+            },
+            "creator": {
+                "@type": "Organization",
+                "name": "FixitHub"
+            }
+        });
+        document.head.appendChild(script);
+    </script>
+</body>
+</html>

@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" href="favicon-16x16.png" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="Edit and format your XML code online with FixitHub’s free XML Editor. Clean, simple, fast, and developer-friendly.">
+<meta name="keywords" content="xml editor, edit xml, online xml editor, xml formatter, xml viewer, xml beautifier, FixitHub developer tools">
+<meta name="author" content="FixitHub">
+<meta property="og:title" content="FixitHub - Free Online XML Editor Tool">
+<meta property="og:description" content="Edit and format XML easily with FixitHub. A clean, free online XML editor for developers and students.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://fixithub.site/xml-editor">
+<meta property="og:image" content="https://fixithub.site/images/xml-editor.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FixitHub - XML Editor Tool">
+<meta name="twitter:description" content="Edit and beautify XML code instantly with FixitHub’s free online XML Editor.">
+<link rel="canonical" href="https://fixithub.site/xml-editor">
+<title>XML Editor - Edit and Format XML Code | FixitHub</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2131173131707389" crossorigin="anonymous"></script>
+
+    <style>
+        :root {
+            --primary-color: #4f46e5;
+            --primary-hover: #4338ca;
+            --text-color: #1e293b;
+            --bg-color: #ffffff;
+            --sidebar-bg: #f8fafc;
+            --editor-bg: #ffffff;
+            --border-color: #e2e8f0;
+            --error-color: #dc2626;
+            --success-color: #16a34a;
+            --warning-color: #d97706;
+            --line-number-color: #64748b;
+            --line-highlight: #f1f5f9;
+            --button-bg: #e2e8f0;
+            --button-hover: #cbd5e1;
+            --tooltip-bg: #1e293b;
+            --tooltip-text: #ffffff;
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #6366f1;
+            --primary-hover: #818cf8;
+            --text-color: #e2e8f0;
+            --bg-color: #0f172a;
+            --sidebar-bg: #1e293b;
+            --editor-bg: #1e293b;
+            --border-color: #334155;
+            --error-color: #f87171;
+            --success-color: #4ade80;
+            --warning-color: #fbbf24;
+            --line-number-color: #94a3b8;
+            --line-highlight: #1e293b;
+            --button-bg: #334155;
+            --button-hover: #475569;
+            --tooltip-bg: #e2e8f0;
+            --tooltip-text: #1e293b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        nav a:hover::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: white;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 0.5rem;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .tool-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .tool-description {
+            margin-bottom: 2rem;
+            color: var(--text-color);
+            max-width: 800px;
+        }
+
+        .ad-container {
+            margin: 1.5rem 0;
+            background-color: var(--sidebar-bg);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 90px;
+            border: 1px dashed var(--border-color);
+        }
+
+        .ad-container.horizontal {
+            width: 100%;
+        }
+
+        .ad-container.vertical {
+            width: 300px;
+            height: 250px;
+            margin: 0 auto;
+        }
+
+        .tool-container {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .sidebar {
+            width: 250px;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .tool-card {
+            background-color: var(--sidebar-bg);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .tool-card h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .tool-card p {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-secondary {
+            background-color: var(--button-bg);
+            color: var(--text-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--button-hover);
+        }
+
+        .btn-sm {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.8rem;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-group .btn {
+            flex: 1;
+        }
+
+        .editor-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .editor-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .editor-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .dropzone {
+            border: 2px dashed var(--border-color);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            background-color: var(--editor-bg);
+            position: relative;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dropzone.active {
+            border-color: var(--primary-color);
+            background-color: rgba(79, 70, 229, 0.05);
+        }
+
+        .dropzone p {
+            margin-bottom: 0.5rem;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .code-editor {
+            position: relative;
+            height: 100%;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .editor-wrapper {
+            position: relative;
+            flex: 1;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+
+        .line-numbers {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            padding: 0.75rem;
+            padding-right: 0.5rem;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: var(--line-number-color);
+            background-color: var(--editor-bg);
+            border-right: 1px solid var(--border-color);
+            text-align: right;
+            user-select: none;
+            z-index: 1;
+        }
+
+        #editor {
+            width: 100%;
+            height: 100%;
+            min-height: 300px;
+            padding: 0.75rem;
+            padding-left: 3rem;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: var(--text-color);
+            background-color: var(--editor-bg);
+            border: none;
+            resize: none;
+            outline: none;
+            white-space: pre;
+            tab-size: 2;
+        }
+
+        .error-marker {
+            position: absolute;
+            background-color: rgba(220, 38, 38, 0.1);
+            border-left: 3px solid var(--error-color);
+        }
+
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            background-color: var(--sidebar-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            font-size: 0.8rem;
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .status-icon {
+            width: 0.6rem;
+            height: 0.6rem;
+            border-radius: 50%;
+        }
+
+        .status-icon.valid {
+            background-color: var(--success-color);
+        }
+
+        .status-icon.invalid {
+            background-color: var(--error-color);
+        }
+
+        .status-icon.warning {
+            background-color: var(--warning-color);
+        }
+
+        .tooltip {
+            position: relative;
+        }
+
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .tooltip-text {
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--tooltip-bg);
+            color: var(--tooltip-text);
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            margin-bottom: 0.5rem;
+            z-index: 10;
+            transition: opacity 0.2s;
+        }
+
+        .tooltip-text::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 5px;
+            border-style: solid;
+            border-color: var(--tooltip-bg) transparent transparent transparent;
+        }
+
+        footer {
+            background-color: var(--sidebar-bg);
+            padding: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-column a {
+            color: var(--text-color);
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .footer-column a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 1024px) {
+            .tool-container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+
+            .tool-card {
+                flex: 1;
+                min-width: 200px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0.5rem 1rem;
+            }
+
+            nav ul {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: 100vh;
+                background-color: var(--primary-color);
+                flex-direction: column;
+                padding: 2rem;
+                transition: right 0.3s;
+                z-index: 100;
+            }
+
+            nav ul.active {
+                right: 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+                z-index: 101;
+            }
+
+            .mobile-menu-close {
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                font-size: 1.5rem;
+                background: none;
+                border: none;
+                color: white;
+                cursor: pointer;
+            }
+
+            .btn-group {
+                flex-direction: column;
+            }
+
+            .editor-actions {
+                flex-wrap: wrap;
+            }
+        }
+
+        /* XML Syntax Highlighting */
+        .tag {
+            color: #e06c75;
+        }
+        .attribute {
+            color: #d19a66;
+        }
+        .value {
+            color: #98c379;
+        }
+        .comment {
+            color: #5c6370;
+            font-style: italic;
+        }
+        .cdata {
+            color: #61afef;
+        }
+        .doctype {
+            color: #c678dd;
+        }
+        .punctuation {
+            color: #abb2bf;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="/" class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M11.644 1.59a.75.75 0 01.712 0l9.75 5.25a.75.75 0 010 1.32l-9.75 5.25a.75.75 0 01-.712 0l-9.75-5.25a.75.75 0 010-1.32l9.75-5.25z" />
+                    <path d="M3.265 10.602l7.668 4.129a2.25 2.25 0 002.134 0l7.668-4.13 1.37.739a.75.75 0 010 1.32l-9.75 5.25a.75.75 0 01-.71 0l-9.75-5.25a.75.75 0 010-1.32l1.37-.738z" />
+                    <path d="M10.933 19.231l-7.668-4.13-1.37.739a.75.75 0 000 1.32l9.75 5.25a.75.75 0 00.71 0l9.75-5.25a.75.75 0 000-1.32l-1.37-.738-7.668 4.13a2.25 2.25 0 01-2.134-.001z" />
+                </svg>
+                <span>XML Editor</span>
+            </a>
+            <nav>
+                <ul id="nav-menu">
+                    <button class="mobile-menu-close">&times;</button>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="contact-us.html">Contact Us</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
+                    </svg>
+                </button>
+                <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <h1 class="tool-title">XML Formatter Tool</h1>
+
+                <div class="tool-card">
+                    <h3>Quick Actions</h3>
+                    <div class="btn-group">
+                        <button id="copy-btn" class="btn btn-secondary btn-sm tooltip">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                            <span class="tooltip-text">Copy to clipboard</span>
+                        </button>
+                        <button id="clear-btn" class="btn btn-secondary btn-sm tooltip">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 6h18"></path>
+                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                            </svg>
+                            <span class="tooltip-text">Clear editor</span>
+                        </button>
+                        <button id="download-btn" class="btn btn-secondary btn-sm tooltip">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            <span class="tooltip-text">Download XML</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="editor-container">
+                <div class="editor-header">
+                    <h3>XML Editor</h3>
+                    <div class="editor-actions">
+                        <button id="sample-btn" class="btn btn-secondary btn-sm">Load Sample</button>
+                        <input type="file" id="file-input" class="file-input" accept=".xml">
+                        <label for="file-input" class="btn btn-secondary btn-sm">Upload XML</label>
+                    </div>
+                </div>
+
+                <div class="dropzone" id="dropzone">
+                    <p>Drag & drop your XML file here or paste your XML code below</p>
+                    <div class="code-editor">
+                        <div class="editor-wrapper">
+                            <div class="line-numbers" id="line-numbers">1</div>
+                            <textarea id="editor" spellcheck="false" placeholder="Paste your XML code here..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="status-bar">
+                    <div class="status-item">
+                        <span id="status-icon" class="status-icon"></span>
+                        <span id="status-text">Ready</span>
+                    </div>
+                    <div class="status-item">
+                        <span id="line-count">1 line</span>
+                        <span id="char-count">0 chars</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ad-container horizontal">
+            <!-- Google AdSense Horizontal Ad -->
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                data-ad-slot="XXXXXXXXXX"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>FixitHub</h3>
+                <ul>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/careers">Careers</a></li>
+                    <li><a href="/press">Press</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Tools</h3>
+                <ul>
+                    <li><a href="xml-formatter.html">XML Formatter</a></li>
+                    <li><a href="json-formatter.html">JSON Formatter</a></li>
+                    <li><a href="html-formatter.html">HTML Formatter</a></li>
+                    <li><a href="css-formatter.html">CSS Formatter</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="contact-us.html">Contact Us</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact-us.html">Help Center</a></li>
+                    <li><a href="feedback.html">Feedback</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="cookie-policy.html">Cookie Policy</a></li>
+                    <li><a href="security.html">Security</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; <span id="current-year"></span> FixitHub. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // DOM Elements
+        const editor = document.getElementById('editor');
+        const lineNumbers = document.getElementById('line-numbers');
+        const dropzone = document.getElementById('dropzone');
+        const fileInput = document.getElementById('file-input');
+        const formatBtn = document.getElementById('format-btn');
+        const minifyBtn = document.getElementById('minify-btn');
+        const validateBtn = document.getElementById('validate-btn');
+        const copyBtn = document.getElementById('copy-btn');
+        const clearBtn = document.getElementById('clear-btn');
+        const downloadBtn = document.getElementById('download-btn');
+        const sampleBtn = document.getElementById('sample-btn');
+        const statusIcon = document.getElementById('status-icon');
+        const statusText = document.getElementById('status-text');
+        const lineCount = document.getElementById('line-count');
+        const charCount = document.getElementById('char-count');
+        const themeToggle = document.getElementById('theme-toggle');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+        const currentYear = document.getElementById('current-year');
+
+        // Sample XML data
+        const sampleXML = `<?xml version="1.0" encoding="UTF-8"?>
+<catalog>
+  <book id="bk101">
+    <author>Gambardella, Matthew</author>
+    <title>XML Developer's Guide</title>
+    <genre>Computer</genre>
+    <price>44.95</price>
+    <publish_date>2000-10-01</publish_date>
+    <description>An in-depth look at creating applications with XML.</description>
+  </book>
+  <book id="bk102">
+    <author>Ralls, Kim</author>
+    <title>Midnight Rain</title>
+    <genre>Fantasy</genre>
+    <price>5.95</price>
+    <publish_date>2000-12-16</publish_date>
+    <description>A former architect battles corporate zombies.</description>
+  </book>
+</catalog>`;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set current year
+            currentYear.textContent = new Date().getFullYear();
+
+            // Load theme preference
+            loadTheme();
+
+            // Update line numbers and character count
+            updateLineNumbers();
+            updateCharCount();
+
+            // Set up event listeners
+            setupEventListeners();
+        });
+
+        // Theme management
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme') || 
+                               (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            setTheme(savedTheme);
+        }
+
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            
+            // Update toggle icon
+            const icon = themeToggle.querySelector('svg');
+            if (theme === 'dark') {
+                icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+            } else {
+                icon.innerHTML = '<circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>';
+            }
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            setTheme(newTheme);
+        });
+
+        // Mobile menu toggle
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.add('active');
+        });
+
+        document.querySelector('.mobile-menu-close').addEventListener('click', () => {
+            navMenu.classList.remove('active');
+        });
+
+        // Line numbers and editor functions
+        function updateLineNumbers() {
+            const lines = editor.value.split('\n');
+            let lineNumbersHTML = '';
+            
+            for (let i = 0; i < lines.length; i++) {
+                lineNumbersHTML += (i + 1) + '<br>';
+            }
+            
+            lineNumbers.innerHTML = lineNumbersHTML;
+            lineCount.textContent = `${lines.length} ${lines.length === 1 ? 'line' : 'lines'}`;
+        }
+
+        function updateCharCount() {
+            const count = editor.value.length;
+            charCount.textContent = `${count} ${count === 1 ? 'char' : 'chars'}`;
+        }
+
+        function highlightError(line) {
+            // Clear previous error highlights
+            document.querySelectorAll('.error-marker').forEach(el => el.remove());
+            
+            if (line) {
+                const lines = editor.value.split('\n');
+                const lineHeight = 24; // Approximate line height in pixels
+                const errorLine = document.createElement('div');
+                errorLine.className = 'error-marker';
+                errorLine.style.top = `${(line - 1) * lineHeight}px`;
+                errorLine.style.height = `${lineHeight}px`;
+                errorLine.style.left = '3rem';
+                errorLine.style.width = 'calc(100% - 3rem)';
+                document.querySelector('.editor-wrapper').appendChild(errorLine);
+            }
+        }
+
+        // XML processing functions
+        function formatXML(xml) {
+            try {
+                // This is a simplified formatter - for production consider using a proper XML parser
+                let formatted = '';
+                let indent = '';
+                const tab = '  ';
+                let inTag = false;
+                let inAttribute = false;
+                let currentLine = 1;
+                let errorLine = null;
+
+                for (let i = 0; i < xml.length; i++) {
+                    const char = xml[i];
+                    
+                    if (char === '<') {
+                        if (xml[i+1] === '!') {
+                            // Handle comments and CDATA
+                            if (xml.substr(i, 4) === '<!--') {
+                                const commentEnd = xml.indexOf('-->', i);
+                                if (commentEnd === -1) {
+                                    errorLine = currentLine;
+                                    throw new Error('Unclosed comment');
+                                }
+                                formatted += '\n' + indent + xml.substring(i, commentEnd + 3);
+                                i = commentEnd + 2;
+                                continue;
+                            } else if (xml.substr(i, 9) === '<![CDATA[') {
+                                const cdataEnd = xml.indexOf(']]>', i);
+                                if (cdataEnd === -1) {
+                                    errorLine = currentLine;
+                                    throw new Error('Unclosed CDATA');
+                                }
+                                formatted += '\n' + indent + xml.substring(i, cdataEnd + 3);
+                                i = cdataEnd + 2;
+                                continue;
+                            }
+                        }
+                        
+                        if (xml[i+1] === '/') {
+                            // Closing tag
+                            indent = indent.substring(0, indent.length - tab.length);
+                            if (!inTag) {
+                                formatted += '\n' + indent;
+                            }
+                            inTag = true;
+                        } else {
+                            // Opening tag
+                            if (!inTag && formatted.length > 0 && formatted[formatted.length-1] !== '\n') {
+                                formatted += '\n';
+                            }
+                            formatted += indent;
+                            inTag = true;
+                        }
+                        formatted += char;
+                    } else if (char === '>') {
+                        inTag = false;
+                        inAttribute = false;
+                        formatted += char;
+                        if (xml[i-1] === '/') {
+                            // Self-closing tag
+                            indent = indent.substring(0, indent.length - tab.length);
+                        }
+                    } else if (char === '\n') {
+                        currentLine++;
+                        if (inTag) {
+                            formatted += char + indent + tab;
+                        } else {
+                            formatted += char;
+                        }
+                    } else if (char === '"') {
+                        inAttribute = !inAttribute;
+                        formatted += char;
+                    } else {
+                        if (!inTag && formatted.length > 0 && formatted[formatted.length-1] === '\n') {
+                            formatted += indent;
+                        }
+                        formatted += char;
+                        if (char === '/' && xml[i+1] === '>') {
+                            indent = indent.substring(0, indent.length - tab.length);
+                        }
+                    }
+                    
+                    if (char === '>' && xml[i+1] !== '<' && xml[i+1] !== '\n' && xml[i+1] !== undefined) {
+                        formatted += '\n';
+                        currentLine++;
+                    }
+                    
+                    if (char === '<' && xml[i+1] !== '/' && xml[i+1] !== '!' && xml[i+1] !== '?') {
+                        indent += tab;
+                    }
+                }
+
+                // Validate the formatted XML
+                validateXML(formatted);
+                
+                return { xml: formatted.trim(), error: null, errorLine: null };
+            } catch (error) {
+                return { xml: null, error: error.message, errorLine: error.line || errorLine };
+            }
+        }
+
+        function minifyXML(xml) {
+            try {
+                // Remove comments
+                xml = xml.replace(/<!--[\s\S]*?-->/g, '');
+                
+                // Remove CDATA sections (but keep content)
+                xml = xml.replace(/<!\[CDATA\[([^\]]*)\]\]>/g, '$1');
+                
+                // Remove whitespace between tags
+                xml = xml.replace(/>\s+</g, '><');
+                
+                // Trim whitespace from the beginning and end
+                xml = xml.trim();
+                
+                // Validate the minified XML
+                validateXML(xml);
+                
+                return { xml: xml, error: null, errorLine: null };
+            } catch (error) {
+                return { xml: null, error: error.message, errorLine: error.line };
+            }
+        }
+
+        function validateXML(xml) {
+            try {
+                // Simple validation - for production consider using DOMParser
+                let stack = [];
+                let i = 0;
+                let line = 1;
+                let inTag = false;
+                let inComment = false;
+                let inCDATA = false;
+                let tagName = '';
+                let lastChar = '';
+                
+                while (i < xml.length) {
+                    const char = xml[i];
+                    
+                    if (char === '\n') line++;
+                    
+                    if (!inComment && !inCDATA && char === '<') {
+                        if (xml.substr(i, 4) === '<!--') {
+                            inComment = true;
+                            i += 4;
+                            continue;
+                        } else if (xml.substr(i, 9) === '<![CDATA[') {
+                            inCDATA = true;
+                            i += 9;
+                            continue;
+                        }
+                        
+                        inTag = true;
+                        tagName = '';
+                        
+                        // Check for XML declaration
+                        if (xml[i+1] === '?') {
+                            const endDecl = xml.indexOf('?>', i);
+                            if (endDecl === -1) {
+                                throw { message: 'Unclosed XML declaration', line: line };
+                            }
+                            i = endDecl + 1;
+                            continue;
+                        }
+                        
+                        // Check for closing tag
+                        if (xml[i+1] === '/') {
+                            i += 2;
+                            while (i < xml.length && xml[i] !== '>') {
+                                tagName += xml[i];
+                                i++;
+                            }
+                            
+                            if (xml[i] !== '>') {
+                                throw { message: 'Unclosed tag', line: line };
+                            }
+                            
+                            if (stack.length === 0 || stack.pop() !== tagName) {
+                                throw { message: `Mismatched tag: ${tagName}`, line: line };
+                            }
+                        } else {
+                            // Opening tag
+                            i++;
+                            while (i < xml.length && !/\s|>/.test(xml[i])) {
+                                tagName += xml[i];
+                                i++;
+                            }
+                            
+                            // Skip attributes
+                            while (i < xml.length && xml[i] !== '>') {
+                                if (xml[i] === '"' || xml[i] === "'") {
+                                    const quote = xml[i];
+                                    i++;
+                                    while (i < xml.length && xml[i] !== quote) {
+                                        if (xml[i] === '\n') line++;
+                                        i++;
+                                    }
+                                    if (i >= xml.length) {
+                                        throw { message: 'Unclosed attribute value', line: line };
+                                    }
+                                }
+                                i++;
+                            }
+                            
+                            if (i >= xml.length) {
+                                throw { message: 'Unclosed tag', line: line };
+                            }
+                            
+                            // Check for self-closing tag
+                            if (xml[i-1] === '/') {
+                                // Self-closing, don't push to stack
+                            } else {
+                                stack.push(tagName);
+                            }
+                        }
+                    } else if (inComment) {
+                        if (char === '-' && xml.substr(i, 3) === '-->') {
+                            inComment = false;
+                            i += 2;
+                        }
+                    } else if (inCDATA) {
+                        if (char === ']' && xml.substr(i, 3) === ']]>') {
+                            inCDATA = false;
+                            i += 2;
+                        }
+                    }
+                    
+                    lastChar = char;
+                    i++;
+                }
+                
+                if (inComment) {
+                    throw { message: 'Unclosed comment', line: line };
+                }
+                
+                if (inCDATA) {
+                    throw { message: 'Unclosed CDATA section', line: line };
+                }
+                
+                if (stack.length > 0) {
+                    throw { message: `Unclosed tag: ${stack[0]}`, line: line };
+                }
+                
+                return { valid: true, error: null, errorLine: null };
+            } catch (error) {
+                return { valid: false, error: error.message, errorLine: error.line };
+            }
+        }
+
+        // Event handlers
+        function setupEventListeners() {
+            // Editor events
+            editor.addEventListener('input', () => {
+                updateLineNumbers();
+                updateCharCount();
+            });
+
+            editor.addEventListener('scroll', () => {
+                lineNumbers.scrollTop = editor.scrollTop;
+            });
+
+            editor.addEventListener('keydown', (e) => {
+                if (e.key === 'Tab') {
+                    e.preventDefault();
+                    const start = editor.selectionStart;
+                    const end = editor.selectionEnd;
+                    editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
+                    editor.selectionStart = editor.selectionEnd = start + 2;
+                    updateLineNumbers();
+                    updateCharCount();
+                }
+            });
+
+            // Drag and drop events
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                dropzone.addEventListener(eventName, preventDefaults, false);
+            });
+
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dropzone.addEventListener(eventName, highlight, false);
+            });
+
+            ['dragleave', 'drop'].forEach(eventName => {
+                dropzone.addEventListener(eventName, unhighlight, false);
+            });
+
+            function highlight() {
+                dropzone.classList.add('active');
+            }
+
+            function unhighlight() {
+                dropzone.classList.remove('active');
+            }
+
+            dropzone.addEventListener('drop', handleDrop, false);
+
+            function handleDrop(e) {
+                const dt = e.dataTransfer;
+                const files = dt.files;
+                
+                if (files.length) {
+                    handleFiles(files);
+                }
+            }
+
+            // File input event
+            fileInput.addEventListener('change', () => {
+                if (fileInput.files.length) {
+                    handleFiles(fileInput.files);
+                }
+            });
+
+            // Button events
+            formatBtn.addEventListener('click', () => {
+                const result = formatXML(editor.value);
+                if (result.error) {
+                    showError(result.error, result.errorLine);
+                } else {
+                    editor.value = result.xml;
+                    updateLineNumbers();
+                    updateCharCount();
+                    showSuccess('XML formatted successfully');
+                }
+            });
+
+            minifyBtn.addEventListener('click', () => {
+                const result = minifyXML(editor.value);
+                if (result.error) {
+                    showError(result.error, result.errorLine);
+                } else {
+                    editor.value = result.xml;
+                    updateLineNumbers();
+                    updateCharCount();
+                    showSuccess('XML minified successfully');
+                }
+            });
+
+            validateBtn.addEventListener('click', () => {
+                const result = validateXML(editor.value);
+                if (result.error) {
+                    showError(result.error, result.errorLine);
+                } else {
+                    showSuccess('XML is valid');
+                }
+            });
+
+            copyBtn.addEventListener('click', () => {
+                editor.select();
+                document.execCommand('copy');
+                showSuccess('Copied to clipboard');
+            });
+
+            clearBtn.addEventListener('click', () => {
+                editor.value = '';
+                updateLineNumbers();
+                updateCharCount();
+                showStatus('Ready');
+            });
+
+            downloadBtn.addEventListener('click', () => {
+                if (!editor.value.trim()) {
+                    showError('Editor is empty');
+                    return;
+                }
+                
+                const blob = new Blob([editor.value], { type: 'application/xml' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'formatted.xml';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                showSuccess('Download started');
+            });
+
+            sampleBtn.addEventListener('click', () => {
+                editor.value = sampleXML;
+                updateLineNumbers();
+                updateCharCount();
+                showStatus('Sample XML loaded');
+            });
+        }
+
+        // File handling
+        function handleFiles(files) {
+            const file = files[0];
+            if (file.type === 'text/xml' || file.name.endsWith('.xml')) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    editor.value = e.target.result;
+                    updateLineNumbers();
+                    updateCharCount();
+                    showSuccess('XML file loaded');
+                };
+                reader.readAsText(file);
+            } else {
+                showError('Please upload an XML file');
+            }
+        }
+
+        // Status functions
+        function showStatus(message) {
+            statusText.textContent = message;
+            statusIcon.className = 'status-icon';
+            highlightError(null);
+        }
+
+        function showSuccess(message) {
+            statusText.textContent = message;
+            statusIcon.className = 'status-icon valid';
+            highlightError(null);
+        }
+
+        function showError(message, line = null) {
+            statusText.textContent = message;
+            statusIcon.className = 'status-icon invalid';
+            highlightError(line);
+        }
+
+        // Syntax highlighting (simplified)
+        function applySyntaxHighlighting() {
+            // This is a simplified version - consider using a proper syntax highlighting library
+            // For a full implementation, you might want to use Prism.js or similar
+        }
+
+        // Initialize syntax highlighting
+        applySyntaxHighlighting();
+    </script>
+</body>
+</html>

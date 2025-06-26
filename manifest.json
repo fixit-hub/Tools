@@ -1,0 +1,22 @@
+{
+  "name": "FixitHub - Free Online Tools",
+  "short_name": "FixitHub",
+  "description": "FixitHub offers 70+ free online tools for PDFs, images, text, videos, and more — all in one place. Fast, lightweight, SEO-optimized.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1E40AF",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "android-chrome-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "android-chrome-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}
