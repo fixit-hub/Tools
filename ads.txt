@@ -1,4 +1,2 @@
-<?php
-header('Location: https://srv.adstxtmanager.com/19390/fixithub.site');
-exit;
-?>
+
+google.com, pub-2131173131707389, DIRECT, f08c47fec0942fa0
