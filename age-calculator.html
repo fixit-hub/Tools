@@ -1,83 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free Online Age Calculator - Calculate Your Age in Years, Months & Days</title>
-<meta name="description" content="Use FixitHub’s free Age Calculator to instantly find your age in years, months, weeks, days, and even seconds. Accurate & fast online tool.">
-<meta name="keywords" content="age calculator, calculate age online, age in years, how old am I, birthday calculator, date of birth calculator, find my age, age finder tool, FixitHub age calculator, DOB calculator">
-<meta name="author" content="FixitHub">
-<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-<link rel="canonical" href="https://fixithub.site/age-calculator">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Online Age Calculator - Calculate Your Age in Years, Months & Days</title>
+  <meta name="description" content="Use FixitHub’s free Age Calculator to instantly find your age in years, months, weeks, days, and even seconds. Accurate & fast online tool.">
+  <meta name="keywords" content="age calculator, calculate age online, age in years, how old am I, birthday calculator, date of birth calculator, find my age, age finder tool, FixitHub age calculator, DOB calculator">
+  <meta name="author" content="FixitHub">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <link rel="canonical" href="https://fixithub.site/age-calculator">
 
-<!-- Open Graph -->
-<meta property="og:title" content="Free Age Calculator - Find Your Exact Age Instantly | FixitHub">
-<meta property="og:description" content="Calculate your exact age in years, months, and days with FixitHub’s free age calculator tool. Fast, accurate and 100% online.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://fixithub.site/age-calculator">
-<meta property="og:image" content="https://fixithub.site/images/age-calculator.webp">
+  <!-- Open Graph Meta -->
+  <meta property="og:title" content="Free Age Calculator - Find Your Exact Age Instantly | FixitHub">
+  <meta property="og:description" content="Calculate your exact age in years, months, and days with FixitHub’s free age calculator tool. Fast, accurate and 100% online.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fixithub.site/age-calculator">
+  <meta property="og:image" content="https://fixithub.site/images/age-calculator.webp">
 
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Online Age Calculator - Free & Accurate | FixitHub">
-<meta name="twitter:description" content="FixitHub offers a 100% free age calculator tool to find your exact age in years, months, and days. No signup required.">
+  <!-- Twitter Meta -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Online Age Calculator - Free & Accurate | FixitHub">
+  <meta name="twitter:description" content="FixitHub offers a 100% free age calculator tool to find your exact age in years, months, and days. No signup required.">
 
-<!-- Fonts & Icons -->
-<link rel="icon" href="favicon-16x16.png" type="image/x-icon">
-<link rel="icon" href="favicon-32x32.png" type="image/x-icon">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <!-- Icons & Fonts -->
+  <link rel="icon" href="favicon-16x16.png" type="image/x-icon">
+  <link rel="icon" href="favicon-32x32.png" type="image/x-icon">
+  <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
+  <link rel="manifest" href="/site.webmanifest">
 
-<!-- AdSense -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2131173131707389" crossorigin="anonymous"></script>
+  <!-- Apple iOS PWA Support -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="FixitHub">
 
-<!-- JSON-LD Structured Data for Google -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Age Calculator - FixitHub",
-  "operatingSystem": "All",
-  "applicationCategory": "UtilitiesApplication",
-  "description": "Use FixitHub’s free Age Calculator to instantly find your age in years, months, days, and even seconds. Accurate and fast online tool.",
-  "url": "https://fixithub.site/age-calculator",
-  "image": "https://fixithub.site/images/age-calculator.webp",
-  "author": {
-    "@type": "Organization",
-    "name": "FixitHub"
-  },
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
+  <!-- Google Fonts Preconnect & Preload -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter&family=Space+Grotesk&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2131173131707389" crossorigin="anonymous"></script>
+
+  <!-- ✅ Google Analytics (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4D4EN6ZQSZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4D4EN6ZQSZ');
+  </script>
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Age Calculator - FixitHub",
+    "operatingSystem": "All",
+    "applicationCategory": "UtilitiesApplication",
+    "description": "Use FixitHub’s free Age Calculator to instantly find your age in years, months, days, and even seconds. Accurate and fast online tool.",
+    "url": "https://fixithub.site/age-calculator",
+    "image": "https://fixithub.site/images/age-calculator.webp",
+    "author": {
+      "@type": "Organization",
+      "name": "FixitHub"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
   }
-}
-</script>
+  </script>
 
-<!-- FAQ Schema for Rich Snippets -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [{
-    "@type": "Question",
-    "name": "How do I calculate my exact age?",
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Simply enter your date of birth into FixitHub's Age Calculator to get your age in years, months, days, and even seconds."
-    }
-  }, {
-    "@type": "Question",
-    "name": "Is the FixitHub Age Calculator free?",
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Yes! FixitHub's age calculator tool is 100% free and does not require sign-up."
-    }
-  }]
-}
-</script>
+  <!-- FAQ Rich Results -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [{
+      "@type": "Question",
+      "name": "How do I calculate my exact age?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Simply enter your date of birth into FixitHub's Age Calculator to get your age in years, months, days, and even seconds."
+      }
+    }, {
+      "@type": "Question",
+      "name": "Is the FixitHub Age Calculator free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes! FixitHub's age calculator tool is 100% free and does not require sign-up."
+      }
+    }]
+  }
+  </script>
+</head>
     <style>
         :root {
             --primary-color: #4361ee;
